@@ -25,6 +25,7 @@ Compatibility
 
 Licence
 -------
+MIT License (see LICENSE file)
 
 Authors
 -------
