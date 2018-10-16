@@ -25,6 +25,7 @@ setup(
     long_description=read("README.rst"),
 
     packages=find_packages(exclude=('tests',)),
+    package_data={'pyeuromil': ['data/*.txt']},
 
     install_requires=[],
 
