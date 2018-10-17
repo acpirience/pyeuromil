@@ -1,13 +1,13 @@
 """ A python library to check and analyse Euromillions results """
-import os
-
+import pkg_resources
 
 class Euromil:
     """ Main class for pyeuromil"""
     def __init__(self):
-        with open("pyeuromil/data/2011.txt", "r") as data:
-            self.test = (data.readline()).strip()
-
+        resource_package = __name__
+        resource_path = '/'.join(('data', '2011.txt'))
+        with pkg_resources.resource_stream(resource_package, resource_path) as data:
+            self.test = data.readline().strip().decode("utf-8")
 
 if __name__ == "__main__":
     pass
