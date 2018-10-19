@@ -15,7 +15,7 @@ def read(filename):
 
 setup(
     name="pyeuromil",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/acpirience/pyeuromil",
     author="Acpirience",
     author_email="acpirience@gmail.com",
