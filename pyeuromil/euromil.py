@@ -14,6 +14,16 @@ class Euromil:
     def __init__(self):
         self._storage = {}
 
+    @staticmethod
+    def year_is_valid(year):
+        """  returns true is the year is a valid draw year """
+        return isinstance(year, int) and year >= MIN_YEAR and year <= MAX_YEAR
+
+    @staticmethod
+    def month_is_valid(month):
+        """  returns true is the maoth is valid """
+        return isinstance(month, int) and month >= 1 and month <= 12
+
     def _load_data(self, year):
         """ Load data in storage per year """
         key = str(year)
@@ -29,7 +39,7 @@ class Euromil:
 
     def results(self, year, month=None, day=None):
         """ get a result list from a date """
-        if isinstance(year, int) and year >= MIN_YEAR and year <= MAX_YEAR:
+        if Euromil.year_is_valid(year):
             # lazy load data values if not already loaded in memory
             if str(year) not in self._storage:
                 self._load_data(year)
@@ -37,7 +47,7 @@ class Euromil:
             if month is None and day is None:
                 return self._storage[str(year)]
 
-            if isinstance(month, int) and month >= 1 and month <= 12:
+            if Euromil.month_is_valid(month):
                 if day is None:
                     month_result = {}
                     for result in self._storage[str(year)]:
@@ -55,9 +65,9 @@ class Euromil:
 
         raise ValueError(f"Year must be an int between {MIN_YEAR} and {MAX_YEAR}")
 
-    def dummy2(self):
-        """ dummy method 2 """
-        pass
+    def draw_dates(self, year, month=None):
+        """ list the draw for a given year / month """
+        return self.results(year, month).keys()
 
 
 if __name__ == "__main__":
