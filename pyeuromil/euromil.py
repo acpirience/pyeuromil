@@ -1,6 +1,6 @@
 """ A python library to check and analyse Euromillions results """
 from collections import namedtuple
-from datetime import date
+from datetime import datetime
 import pkg_resources
 
 
@@ -36,12 +36,10 @@ class Euromil:
             data.readline()
             for line in data.readlines():
                 result = line.strip().decode("utf-8").split(" ")
-                result_date = result[0]
-                result[0] = date(
-                    int(result_date[6:10]), int(result_date[3:5]), int(result_date[0:2])
-                )
+                result_date = datetime.strptime(result[0], "%d/%m/%Y")
+                result[0] = result_date
                 result_stored = Result(*result)
-                self._storage[key][result_date] = result_stored
+                self._storage[key][result_date.strftime("%Y-%m-%d")] = result_stored
 
     def results(self, year, month=None, day=None):
         """ get a result list from a date """
@@ -57,12 +55,12 @@ class Euromil:
                 if day is None:
                     month_result = {}
                     for result in self._storage[str(year)]:
-                        if int(result[3:5]) == month:
+                        if int(result[5:7]) == month:
                             month_result[result] = self._storage[str(year)][result]
                     return month_result
 
                 if isinstance(day, int):
-                    stored_date = f"{day:02}/{month:02}/{year}"
+                    stored_date = f"{year}-{month:02}-{day:02}"
                     if stored_date in self._storage[str(year)]:
                         return self._storage[str(year)][stored_date]
                 ValueError(f"Day must be an int")

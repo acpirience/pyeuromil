@@ -1,5 +1,5 @@
 """ Unit tests for Euromil.py """
-from datetime import date
+from datetime import datetime
 import pytest
 from pyeuromil import Euromil
 
@@ -30,11 +30,11 @@ def test_euromil_load_data():
 
     my_euromil._load_data(2011)
     assert my_euromil._storage["2011"]
-    assert my_euromil._storage["2011"]["30/12/2011"].n1 == "16"
+    assert my_euromil._storage["2011"]["2011-12-30"].n1 == "16"
 
     my_euromil._load_data(2012)
     assert my_euromil._storage["2012"]
-    assert my_euromil._storage["2012"]["03/01/2012"].star2 == "10"
+    assert my_euromil._storage["2012"]["2012-01-03"].star2 == "10"
 
 
 def test_euromil_results_year_not_exist():
@@ -51,7 +51,7 @@ def test_euromil_results_year_exist():
     """ results of year test (year exists) """
     my_euromil = Euromil()
     results = my_euromil.results(2011)
-    assert results["30/12/2011"].n1 == "16"
+    assert results["2011-12-30"].n1 == "16"
 
 
 def test_euromil_results_year_month_not_exist():
@@ -68,8 +68,8 @@ def test_euromil_results_year_month_exist():
     """ results of year+month test (month exists) """
     my_euromil = Euromil()
     results = my_euromil.results(2011, 10)
-    assert results["14/10/2011"].n1 == "12"
-    assert results["04/10/2011"].star1 == "08"
+    assert results["2011-10-14"].n1 == "12"
+    assert results["2011-10-04"].star1 == "08"
 
 
 def test_euromil_results_year_month_day_not_exist():
@@ -96,5 +96,5 @@ def test_euromil_draw_dates():
     my_euromil = Euromil()
 
     assert my_euromil.draw_dates(2011) is not None
-    assert date(2011, 6, 3) in my_euromil.draw_dates(2011)
-    assert date(2011, 12, 16) in my_euromil.draw_dates(2011, 12)
+    assert datetime(2011, 6, 3, 0, 0) in my_euromil.draw_dates(2011)
+    assert datetime(2011, 12, 16, 0, 0) in my_euromil.draw_dates(2011, 12)
