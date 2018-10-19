@@ -1,4 +1,5 @@
 """ Unit tests for Euromil.py """
+from datetime import date
 import pytest
 from pyeuromil import Euromil
 
@@ -95,5 +96,5 @@ def test_euromil_draw_dates():
     my_euromil = Euromil()
 
     assert my_euromil.draw_dates(2011) is not None
-    assert "03/06/2011" in my_euromil.draw_dates(2011)
-    assert "16/12/2011" in my_euromil.draw_dates(2011, 12)
+    assert date(2011, 6, 3) in my_euromil.draw_dates(2011)
+    assert date(2011, 12, 16) in my_euromil.draw_dates(2011, 12)

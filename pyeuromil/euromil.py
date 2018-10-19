@@ -1,5 +1,6 @@
 """ A python library to check and analyse Euromillions results """
 from collections import namedtuple
+from datetime import date
 import pkg_resources
 
 
@@ -21,7 +22,7 @@ class Euromil:
 
     @staticmethod
     def month_is_valid(month):
-        """  returns true is the maoth is valid """
+        """  returns true is the month is valid """
         return isinstance(month, int) and month >= 1 and month <= 12
 
     def _load_data(self, year):
@@ -34,8 +35,13 @@ class Euromil:
         with pkg_resources.resource_stream(resource_package, resource_path) as data:
             data.readline()
             for line in data.readlines():
-                result = Result(*(line.strip().decode("utf-8").split(" ")))
-                self._storage[key][result.date] = result
+                result = line.strip().decode("utf-8").split(" ")
+                result_date = result[0]
+                result[0] = date(
+                    int(result_date[6:10]), int(result_date[3:5]), int(result_date[0:2])
+                )
+                result_stored = Result(*result)
+                self._storage[key][result_date] = result_stored
 
     def results(self, year, month=None, day=None):
         """ get a result list from a date """
@@ -56,9 +62,9 @@ class Euromil:
                     return month_result
 
                 if isinstance(day, int):
-                    date = f"{day:02}/{month:02}/{year}"
-                    if date in self._storage[str(year)]:
-                        return self._storage[str(year)][date]
+                    stored_date = f"{day:02}/{month:02}/{year}"
+                    if stored_date in self._storage[str(year)]:
+                        return self._storage[str(year)][stored_date]
                 ValueError(f"Day must be an int")
 
             ValueError(f"Month must be an int between 1 and 12")
@@ -67,7 +73,11 @@ class Euromil:
 
     def draw_dates(self, year, month=None):
         """ list the draw for a given year / month """
-        return self.results(year, month).keys()
+        draws = []
+        for result in self.results(year, month):
+            draws.append(self._storage[str(year)][result].date)
+
+        return draws
 
 
 if __name__ == "__main__":
