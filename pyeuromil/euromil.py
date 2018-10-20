@@ -1,12 +1,7 @@
 """ A python library to check and analyse Euromillions results """
-from collections import namedtuple
 from datetime import datetime, date
 import pkg_resources
-
-
-Result = namedtuple("Result", ["date", "n1", "n2", "n3", "n4", "n5", "star1", "star2"])
-MIN_DATE = date(2011, 5, 10)
-MAX_DATE = date(2018, 10, 19)
+from .euromil_helper import Euro_result, EURO_MIN_DATE, EURO_MAX_DATE
 
 
 class Euromil:
@@ -32,7 +27,7 @@ class Euromil:
 
                 result_date = datetime.strptime(result[0], "%d/%m/%Y").date()
                 result[0] = result_date
-                result_stored = Result(*result)
+                result_stored = Euro_result(*result)
                 self._storage[key][str(result_date)] = result_stored
 
     def results(self, start_date=None, end_date=None):
@@ -40,10 +35,10 @@ class Euromil:
         results = []
 
         if start_date is None:
-            start_date = MIN_DATE
+            start_date = EURO_MIN_DATE
 
         if end_date is None:
-            end_date = MAX_DATE
+            end_date = EURO_MAX_DATE
 
         if not isinstance(start_date, date):
             raise ValueError("if provided, start_date must be a date object")
