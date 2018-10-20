@@ -13,26 +13,33 @@ A python library to check and analyse Euromillions results
 
 ```python
 from pyeuromil import Euromil
+from datetime import date
 
-my_euromil = Euromil()    
-for result in my_euromil.draw_dates(2018, 9):
-	print(result) 
+my_euromil = Euromil()
+# September draws
+for result in my_euromil.draw_dates(date(2018, 9, 1), date(2018, 9, 30)):
+    print(result)
 ```
->2018-09-28 00:00:00  
-2018-09-25 00:00:00  
-2018-09-21 00:00:00  
-2018-09-18 00:00:00  
-2018-09-14 00:00:00  
-2018-09-11 00:00:00  
-2018-09-07 00:00:00  
-2018-09-04 00:00:00  
+>2018-09-28  
+2018-09-25  
+2018-09-21  
+2018-09-18  
+2018-09-14  
+2018-09-11  
+2018-09-07  
+2018-09-04
 ```python
 from pyeuromil import Euromil
+from datetime import date
 
-my_euromil = Euromil()    
-print(my_euromil.results(2018,9,28))
+my_euromil = Euromil()
+# first week of october results
+result_list = my_euromil.results(date(2018, 10, 1), date(2018, 10, 7))
+for result in result_list:
+    print(result)
 ```
->Result(date=datetime.datetime(2018, 9, 28, 0, 0), n1='02', n2='04', n3='08', n4='27', n5='50', star1='02', star2='09')
+>Result(date=datetime.date(2018, 10, 5), n1='08', n2='16', n3='24', n4='26', n5='35', star1='03', star2='11')  
+Result(date=datetime.date(2018, 10, 2), n1='07', n2='17', n3='29', n4='37', n5='45', star1='03', star2='11')
 
 ## Installation
 
