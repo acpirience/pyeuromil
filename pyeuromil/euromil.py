@@ -69,7 +69,3 @@ class Euromil:
             draws.append(result.date)
 
         return draws
-
-
-if __name__ == "__main__":
-    pass
