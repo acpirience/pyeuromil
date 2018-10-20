@@ -1,7 +1,7 @@
 """ A python library to check and analyse Euromillions results """
 from datetime import datetime, date
 import pkg_resources
-from .euromil_helper import Euro_result, EURO_MIN_DATE, EURO_MAX_DATE
+from .euromil_helper import EuroResult, EURO_MIN_DATE, EURO_MAX_DATE
 
 
 class Euromil:
@@ -27,7 +27,7 @@ class Euromil:
 
                 result_date = datetime.strptime(result[0], "%d/%m/%Y").date()
                 result[0] = result_date
-                result_stored = Euro_result(*result)
+                result_stored = EuroResult(*result)
                 self._storage[key][str(result_date)] = result_stored
 
     def results(self, start_date=None, end_date=None):
@@ -41,9 +41,9 @@ class Euromil:
             end_date = EURO_MAX_DATE
 
         if not isinstance(start_date, date):
-            raise ValueError("if provided, start_date must be a date object")
+            raise ValueError("If provided, start_date must be a date object")
         if not isinstance(end_date, date):
-            raise ValueError("if provided, end_date must be a date object")
+            raise ValueError("If provided, end_date must be a date object")
 
         for year in range(start_date.year, end_date.year + 1):
             # lazy load data values if not already loaded in memory
