@@ -20,7 +20,7 @@ setup(
     author="Acpirience",
     author_email="acpirience@gmail.com",
     description="A python library to check and analyse Euromillions results",
-    long_description=read("README.md"),
+    long_description=read("README.rst"),
     packages=find_packages(exclude=("tests",)),
     package_data={"pyeuromil": ["data/*.txt"]},
     install_requires=[],
