@@ -59,8 +59,8 @@ Usage
 
 .. code-block:: text
 
-    Result(date=datetime.date(2018, 10, 5), n1='08', n2='16', n3='24', n4='26', n5='35', star1='03', star2='11')
-    Result(date=datetime.date(2018, 10, 2), n1='07', n2='17', n3='29', n4='37', n5='45', star1='03', star2='11')
+    Result(date=datetime.date(2018, 10, 5), n1=8, n2=16, n3=24, n4=26, n5=35, star1=3, star2=11)
+    Result(date=datetime.date(2018, 10, 2), n1=7, n2=17, n3=29, n4=37, n5=45, star1=3, star2=11)
 
 Installation
 ------------

@@ -26,6 +26,10 @@ class Euromil:
             data.readline()
             for line in data.readlines():
                 result = line.strip().decode("utf-8").split(" ")
+                for index, value in enumerate(result):
+                    if index > 0:
+                        result[index] = int(value)
+
                 result_date = datetime.strptime(result[0], "%d/%m/%Y").date()
                 result[0] = result_date
                 result_stored = Result(*result)

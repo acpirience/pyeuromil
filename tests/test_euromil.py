@@ -16,11 +16,11 @@ def test_euromil_load_data():
 
     my_euromil._load_data(2011)
     assert my_euromil._storage["2011"]
-    assert my_euromil._storage["2011"]["2011-12-30"].n1 == "16"
+    assert my_euromil._storage["2011"]["2011-12-30"].n1 == 16
 
     my_euromil._load_data(2012)
     assert my_euromil._storage["2012"]
-    assert my_euromil._storage["2012"]["2012-01-03"].star2 == "10"
+    assert my_euromil._storage["2012"]["2012-01-03"].star2 == 10
 
 
 def test_euromil_results_year_not_exist():
@@ -85,8 +85,8 @@ def test_euromil_results_both_dates_one_result():
     results = my_euromil.results(date(2018, 10, 18), date(2018, 10, 20))
 
     assert len(results) == 1
-    assert results[0].n1 == "01"
-    assert results[0].star1 == "03"
+    assert results[0].n1 == 1
+    assert results[0].star1 == 3
 
 
 def test_euromil_draw_dates():
