@@ -1,12 +1,12 @@
 """ A python library to check and analyse Euromillions results """
 from collections import namedtuple
-from datetime import datetime
+from datetime import datetime, date
 import pkg_resources
 
 
 Result = namedtuple("Result", ["date", "n1", "n2", "n3", "n4", "n5", "star1", "star2"])
-MIN_YEAR = 2011
-MAX_YEAR = 2018
+MIN_DATE = date(2011, 5, 10)
+MAX_DATE = date(2018, 10, 19)
 
 
 class Euromil:
@@ -14,16 +14,6 @@ class Euromil:
 
     def __init__(self):
         self._storage = {}
-
-    @staticmethod
-    def year_is_valid(year):
-        """  returns true is the year is a valid draw year """
-        return isinstance(year, int) and year >= MIN_YEAR and year <= MAX_YEAR
-
-    @staticmethod
-    def month_is_valid(month):
-        """  returns true is the month is valid """
-        return isinstance(month, int) and month >= 1 and month <= 12
 
     def _load_data(self, year):
         """ Load data in storage per year """
@@ -36,44 +26,43 @@ class Euromil:
             data.readline()
             for line in data.readlines():
                 result = line.strip().decode("utf-8").split(" ")
-                result_date = datetime.strptime(result[0], "%d/%m/%Y")
+                result_date = datetime.strptime(result[0], "%d/%m/%Y").date()
                 result[0] = result_date
                 result_stored = Result(*result)
-                self._storage[key][result_date.strftime("%Y-%m-%d")] = result_stored
+                self._storage[key][str(result_date)] = result_stored
 
-    def results(self, year, month=None, day=None):
-        """ get a result list from a date """
-        if Euromil.year_is_valid(year):
+    def results(self, start_date=None, end_date=None):
+        """ get a result list from an interval """
+        results = []
+
+        if start_date is None:
+            start_date = MIN_DATE
+
+        if end_date is None:
+            end_date = MAX_DATE
+
+        if not isinstance(start_date, date):
+            raise ValueError("if provided, start_date must be a date object")
+        if not isinstance(end_date, date):
+            raise ValueError("if provided, end_date must be a date object")
+
+        for year in range(start_date.year, end_date.year + 1):
             # lazy load data values if not already loaded in memory
             if str(year) not in self._storage:
-                self._load_data(year)
+                self._load_data(str(year))
 
-            if month is None and day is None:
-                return self._storage[str(year)]
+            for key in self._storage[str(year)]:
+                result = self._storage[str(year)][key]
+                if (result.date >= start_date) and (result.date <= end_date):
+                    results.append(result)
 
-            if Euromil.month_is_valid(month):
-                if day is None:
-                    month_result = {}
-                    for result in self._storage[str(year)]:
-                        if int(result[5:7]) == month:
-                            month_result[result] = self._storage[str(year)][result]
-                    return month_result
+        return results
 
-                if isinstance(day, int):
-                    stored_date = f"{year}-{month:02}-{day:02}"
-                    if stored_date in self._storage[str(year)]:
-                        return self._storage[str(year)][stored_date]
-                ValueError(f"Day must be an int")
-
-            ValueError(f"Month must be an int between 1 and 12")
-
-        raise ValueError(f"Year must be an int between {MIN_YEAR} and {MAX_YEAR}")
-
-    def draw_dates(self, year, month=None):
+    def draw_dates(self, start_date=None, end_date=None):
         """ list the draw for a given year / month """
         draws = []
-        for result in self.results(year, month):
-            draws.append(self._storage[str(year)][result].date)
+        for result in self.results(start_date, end_date):
+            draws.append(result.date)
 
         return draws
 
