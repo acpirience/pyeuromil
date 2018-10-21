@@ -6,7 +6,9 @@ import pytest
 def test_euromil_repr():
     """ __repr__ test"""
     test_game = Game(list(range(1, 6)), list(range(1, 3)))
-    assert str(test_game) == "Game(Numbers:[1, 2, 3, 4, 5], Stars:[1, 2])"
+    assert (
+        str(test_game) == "Game(Numbers:[1, 2, 3, 4, 5], Stars:[1, 2], Star Plus:False)"
+    )
 
 
 def test_euromil_game_init_ko_basic():
@@ -64,10 +66,12 @@ def test_euromil_game_init_ko_duplicates():
 
 def test_euromil_game_init_ok_basic():
     """ __init__ test Ok simple cases """
-    test_game = Game(list(range(1, 6)), list(range(1, 3)))
+    test_game = Game(list(range(1, 6)), list(range(1, 3)), star_plus=True)
     assert test_game.numbers == [1, 2, 3, 4, 5]
     assert test_game.stars == [1, 2]
+    assert test_game.start_plus
 
     test_game = Game(list(range(21, 31)), list(range(1, 12)))
     assert test_game.numbers == [x for x in range(21, 31)]
     assert test_game.stars == [x for x in range(1, 12)]
+    assert not test_game.start_plus

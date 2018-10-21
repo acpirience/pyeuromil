@@ -27,7 +27,7 @@ def test_euromil_dunder(play):
     # test repr
     assert (
         str(play)
-        == "Plays(1 play(s): [Play(game=Game(Numbers:[1, 2, 3, 4, 5], Stars:[1, 2]), start=datetime.date(2018, 1, 1), end=datetime.date(2018, 1, 1), tuesday=False, friday=True)])"
+        == "Plays(1 play(s): [Play(game=Game(Numbers:[1, 2, 3, 4, 5], Stars:[1, 2], Star Plus:False), start=datetime.date(2018, 1, 1), end=datetime.date(2018, 1, 1), tuesday=False, friday=True)])"
     )
 
 

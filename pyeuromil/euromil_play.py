@@ -32,7 +32,7 @@ class Plays:
 class Game:
     """ Stores a unitary game """
 
-    def __init__(self, numbers, stars):
+    def __init__(self, numbers, stars, star_plus=False):
         if not isinstance(numbers, list) or not isinstance(stars, list):
             raise ValueError("Expecting list of numbers and list of stars")
 
@@ -42,9 +42,13 @@ class Game:
 
         self.numbers = numbers
         self.stars = stars
+        self.start_plus = star_plus
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(Numbers:{self.numbers}, Stars:{self.stars})"
+        return (
+            f"{self.__class__.__name__}(Numbers:{self.numbers},"
+            + f" Stars:{self.stars}, Star Plus:{self.start_plus})"
+        )
 
     @staticmethod
     def check_numbers(numbers, stars):
