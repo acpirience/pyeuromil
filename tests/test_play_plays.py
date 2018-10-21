@@ -9,7 +9,7 @@ def play():
     return Plays()
 
 
-def test_euromil_dunder(play):
+def test_euromil_play_dunder(play):
     """ dunder methods test test"""
     # test init
     assert play.game_list == []
@@ -31,7 +31,7 @@ def test_euromil_dunder(play):
     )
 
 
-def test_euromil_append_ko(play):
+def test_euromil_play_append_ko(play):
     """ append ko because of dates """
     with pytest.raises(ValueError):
         play.append(None)
@@ -43,7 +43,7 @@ def test_euromil_append_ko(play):
         play.append(Game([1, 2, 3, 4, 5], [1, 2]), start=date(2018, 1, 1), end="")
 
 
-def test_euromil_append_ok(play):
+def test_euromil_play_append_ok(play):
     """ append ok """
     play.append(
         Game([1, 2, 3, 4, 5], [1, 2]),
@@ -57,3 +57,32 @@ def test_euromil_append_ok(play):
     assert play.game_list[0].end == date(2018, 1, 1)
     assert not play.game_list[0].tuesday
     assert play.game_list[0].friday
+
+
+def test_euromil_play_ranking_ko():
+    """ ranking ko test """
+    with pytest.raises(ValueError):
+        _, _ = Plays.ranking("", [])
+
+
+def test_euromil_play_ranking_ok():
+    """ ranking various passing tests """
+    # nothing won
+    normal, stars_plus = Plays.ranking([], [])
+    assert normal == 0
+    assert stars_plus == 0
+
+    # rank 13 normal win
+    normal, stars_plus = Plays.ranking([1, 2], [])
+    assert normal == 13
+    assert stars_plus == 0
+
+    # rank 6 normal win and rank 4 Star Plus win
+    normal, stars_plus = Plays.ranking([1, 2, 3], [1, 2])
+    assert normal == 6
+    assert stars_plus == 4
+
+    # rank 1 normal win and rank 1 Star Plus win
+    normal, stars_plus = Plays.ranking([1, 2, 3, 4, 5], [1, 2])
+    assert normal == 1
+    assert stars_plus == 1

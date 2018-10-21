@@ -1,6 +1,6 @@
 """ Stores plays and is used to validate if a game was a win or a loose """
 from datetime import date
-from .euromil_utils import EuroResult, EuroPlay
+from .euromil_utils import EuroResult, EuroPlay, EURO_RANKS_NORMAL, EURO_RANKS_STAR_PLUS
 
 
 class Plays:
@@ -18,12 +18,26 @@ class Plays:
     def append(self, game, *, start=None, end=None, tuesday=False, friday=False):
         """ Add a new game + date of plays """
         if not isinstance(game, Game):
-            raise ValueError("Expecting a Game object")
+            raise ValueError("Expecting a type Game")
 
         if not isinstance(start, date) or not isinstance(end, date):
             raise ValueError("Start and end date are mandatory and be of type date")
 
         self.game_list.append(EuroPlay(game, start, end, tuesday, friday))
+
+    @staticmethod
+    def ranking(numbers, stars):
+        """
+            returns ranking for a normal game and ranking for a Star Plus game
+            Ranking is 0 if nothing was won
+        """
+        if not isinstance(numbers, list) or not isinstance(stars, list):
+            raise ValueError("Expecting numbers and stars as type list")
+
+        ranking_normal = EURO_RANKS_NORMAL.get(f"{len(numbers)}-{len(stars)}", 0)
+        ranking_star_plus = EURO_RANKS_STAR_PLUS.get(f"{len(numbers)}-{len(stars)}", 0)
+
+        return ranking_normal, ranking_star_plus
 
 
 class Game:
