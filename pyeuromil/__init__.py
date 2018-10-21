@@ -6,3 +6,4 @@ __all__ = []
 
 from .euromil import Euromil
 from .euromil_play import Plays, Game
+from .euromil_utils import EuroResult, EuroPlay

@@ -1,9 +1,6 @@
 """ Stores plays and is used to validate if a game was a win or a loose """
-from collections import namedtuple
 from datetime import date
-
-
-EuroPlay = namedtuple("Play", ["game", "start", "end", "tuesday", "friday"])
+from .euromil_utils import EuroResult, EuroPlay
 
 
 class Plays:
@@ -24,7 +21,7 @@ class Plays:
             raise ValueError("Expecting a Game object")
 
         if not isinstance(start, date) or not isinstance(end, date):
-            raise ValueError("Start and end date are mandatory and be date objects")
+            raise ValueError("Start and end date are mandatory and be of type date")
 
         self.game_list.append(EuroPlay(game, start, end, tuesday, friday))
 
@@ -71,3 +68,21 @@ class Game:
                 return False, "Stars should be int between 1 and 12"
 
         return True, ""
+
+    def evaluate_game(self, result):
+        """ returns the list of numbers and stars both in a Game and a result """
+        if not isinstance(result, EuroResult):
+            raise ValueError("Type EuroResult is expected")
+
+        numbers_won = []
+        stars_won = []
+
+        for number in self.numbers:
+            if number in [result.n1, result.n2, result.n3, result.n4, result.n5]:
+                numbers_won.append(number)
+
+        for number in self.stars:
+            if number in [result.star1, result.star2]:
+                stars_won.append(number)
+
+        return (numbers_won, stars_won)
