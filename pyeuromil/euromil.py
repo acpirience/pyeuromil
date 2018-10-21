@@ -1,7 +1,13 @@
 """ A python library to check and analyse Euromillions results """
 from datetime import datetime, date
+from collections import namedtuple
 import pkg_resources
-from .euromil_helper import EuroResult, EURO_MIN_DATE, EURO_MAX_DATE
+from .euromil_constants import EURO_MIN_DATE, EURO_MAX_DATE
+
+
+EuroResult = namedtuple(
+    "Result", ["date", "n1", "n2", "n3", "n4", "n5", "star1", "star2"]
+)
 
 
 class Euromil:
