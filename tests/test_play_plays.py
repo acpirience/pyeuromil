@@ -12,7 +12,7 @@ def play():
 def test_euromil_play_dunder(play):
     """ dunder methods test test"""
     # test init
-    assert play.game_list == []
+    assert play.plays_list == []
 
     # test len
     assert len(play) == 0
@@ -52,11 +52,11 @@ def test_euromil_play_append_ok(play):
         friday=True,
     )
 
-    assert play.game_list[0].game.stars == [1, 2]
-    assert play.game_list[0].start == date(2018, 1, 1)
-    assert play.game_list[0].end == date(2018, 1, 1)
-    assert not play.game_list[0].tuesday
-    assert play.game_list[0].friday
+    assert play.plays_list[0].game.stars == [1, 2]
+    assert play.plays_list[0].start == date(2018, 1, 1)
+    assert play.plays_list[0].end == date(2018, 1, 1)
+    assert not play.plays_list[0].tuesday
+    assert play.plays_list[0].friday
 
 
 def test_euromil_play_ranking_ko():

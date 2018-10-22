@@ -7,13 +7,13 @@ class Plays:
     """ Stores plays and is used to validate if a game was a win or a loose """
 
     def __init__(self):
-        self.game_list = []
+        self.plays_list = []
 
     def __len__(self):
-        return len(self.game_list)
+        return len(self.plays_list)
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({len(self)} play(s): {self.game_list})"
+        return f"{self.__class__.__name__}({len(self)} play(s): {self.plays_list})"
 
     def append(self, game, *, start=None, end=None, tuesday=False, friday=False):
         """ Add a new game + date of plays """
@@ -23,7 +23,7 @@ class Plays:
         if not isinstance(start, date) or not isinstance(end, date):
             raise ValueError("Start and end date are mandatory and be of type date")
 
-        self.game_list.append(EuroPlay(game, start, end, tuesday, friday))
+        self.plays_list.append(EuroPlay(game, start, end, tuesday, friday))
 
     @staticmethod
     def ranking(numbers, stars):
