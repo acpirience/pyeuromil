@@ -80,5 +80,5 @@ Authors
    :target: https://travis-ci.org/acpirience/pyeuromil
 .. |Last-Commit| image:: https://img.shields.io/github/last-commit/acpirience/pyeuromil.svg
    :target: https://github.com/acpirience/pyeuromil/commits/master
-.. |Codecov| image:: https://img.shields.io/codecov/c/github/acpirience/pyeuromil.svg
+.. |Codecov| image:: https://codecov.io/gh/acpirience/pyeuromil/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/acpirience/pyeuromil
