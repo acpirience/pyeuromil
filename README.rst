@@ -1,27 +1,13 @@
 pyeuromil
 =========
 
-.. image:: https://img.shields.io/pypi/v/pyeuromil.svg
-    :target: https://pypi.python.org/pypi/pyeuromil
-    :alt: Latest PyPI version
+|PyPI-Status| |Py-Versions| |Git-RepoSize|
 
-.. image:: https://travis-ci.org/acpirience/pyeuromil.png
-   :target: https://travis-ci.org/acpirience/pyeuromil
-   :alt: Latest Travis CI build status
-
-.. image:: https://img.shields.io/github/last-commit/acpirience/pyeuromil.svg
-   :target: https://github.com/acpirience/pyeuromil/commits/master
-   :alt: last commit
-
-.. image:: https://img.shields.io/pypi/pyversions/pyeuromil.svg
-   :target: https://www.python.org/downloads/
-   :alt: Compatibility
-
-.. image:: https://img.shields.io/github/repo-size/acpirience/pyeuromil.svg
-   :target: https://github.com/acpirience/pyeuromil
-   :alt: Repository size
+|Travis-Status| |Last-Commit| |Codecov|
 
 A python library to check and analyse Euromillions results
+
+------------------------------------------
 
 Usage
 -----
@@ -84,3 +70,15 @@ Authors
 
 
 .. _pip: https://pip.pypa.io/en/stable/quickstart/
+.. |PyPI-Status| image:: https://img.shields.io/pypi/v/pyeuromil.svg
+    :target: https://pypi.python.org/pypi/pyeuromil
+.. |Py-Versions| image:: https://img.shields.io/pypi/pyversions/pyeuromil.svg
+   :target: https://www.python.org/downloads/
+.. |Git-RepoSize| image:: https://img.shields.io/github/repo-size/acpirience/pyeuromil.svg
+   :target: https://github.com/acpirience/pyeuromil
+.. |Travis-Status| image:: https://travis-ci.org/acpirience/pyeuromil.png
+   :target: https://travis-ci.org/acpirience/pyeuromil
+.. |Last-Commit| image:: https://img.shields.io/github/last-commit/acpirience/pyeuromil.svg
+   :target: https://github.com/acpirience/pyeuromil/commits/master
+.. |Codecov| image:: https://img.shields.io/codecov/c/github/acpirience/pyeuromil.svg
+   :target: https://github.com/acpirience/pyeuromil/commits/master
