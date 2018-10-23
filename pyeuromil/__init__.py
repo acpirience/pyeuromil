@@ -5,5 +5,5 @@ __author__ = "Acpirience <acpirience@gmail.com>"
 __all__ = []
 
 from .euromil import Euromil
-from .euromil_play import Plays, Game
+from .euromil_play import Plays, Grid
 from .euromil_utils import EuroResult, EuroPlay

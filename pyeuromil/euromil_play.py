@@ -17,8 +17,8 @@ class Plays:
 
     def append(self, game, *, start=None, end=None, tuesday=False, friday=False):
         """ Add a new game + date of plays """
-        if not isinstance(game, Game):
-            raise ValueError("Expecting a type Game")
+        if not isinstance(game, Grid):
+            raise ValueError("Expecting a type Grid")
 
         if not isinstance(start, date) or not isinstance(end, date):
             raise ValueError("Start and end date are mandatory and be of type date")
@@ -40,14 +40,14 @@ class Plays:
         return ranking_normal, ranking_star_plus
 
 
-class Game:
-    """ Stores a unitary game """
+class Grid:
+    """ Stores a unitary grid """
 
     def __init__(self, numbers, stars, star_plus=False):
         if not isinstance(numbers, list) or not isinstance(stars, list):
             raise ValueError("Expecting list of numbers and list of stars")
 
-        status, message = Game.check_numbers(numbers, stars)
+        status, message = Grid.check_numbers(numbers, stars)
         if not status:
             raise ValueError(message)
 
@@ -83,8 +83,8 @@ class Game:
 
         return True, ""
 
-    def evaluate_game(self, result):
-        """ returns the list of numbers and stars both in a Game and a result """
+    def evaluate_grid(self, result):
+        """ returns the list of numbers and stars both in a Grid and a result """
         if not isinstance(result, EuroResult):
             raise ValueError("Type EuroResult is expected")
 

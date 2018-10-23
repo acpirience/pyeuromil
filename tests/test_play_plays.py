@@ -1,6 +1,6 @@
 """ Unit tests for Euromil.py """
 from datetime import date
-from pyeuromil import Plays, Game
+from pyeuromil import Plays, Grid
 import pytest
 
 
@@ -17,7 +17,7 @@ def test_euromil_play_dunder(play):
     # test len
     assert len(play) == 0
     play.append(
-        Game([1, 2, 3, 4, 5], [1, 2]),
+        Grid([1, 2, 3, 4, 5], [1, 2]),
         start=date(2018, 1, 1),
         end=date(2018, 1, 1),
         friday=True,
@@ -27,7 +27,7 @@ def test_euromil_play_dunder(play):
     # test repr
     assert (
         str(play)
-        == "Plays(1 play(s): [Play(game=Game(Numbers:[1, 2, 3, 4, 5], Stars:[1, 2], Star Plus:False), start=datetime.date(2018, 1, 1), end=datetime.date(2018, 1, 1), tuesday=False, friday=True)])"
+        == "Plays(1 play(s): [Play(grid=Grid(Numbers:[1, 2, 3, 4, 5], Stars:[1, 2], Star Plus:False), start=datetime.date(2018, 1, 1), end=datetime.date(2018, 1, 1), tuesday=False, friday=True)])"
     )
 
 
@@ -37,22 +37,22 @@ def test_euromil_play_append_ko(play):
         play.append(None)
 
     with pytest.raises(ValueError):
-        play.append(Game([1, 2, 3, 4, 5], [1, 2]), start="", end=date(2018, 1, 1))
+        play.append(Grid([1, 2, 3, 4, 5], [1, 2]), start="", end=date(2018, 1, 1))
 
     with pytest.raises(ValueError):
-        play.append(Game([1, 2, 3, 4, 5], [1, 2]), start=date(2018, 1, 1), end="")
+        play.append(Grid([1, 2, 3, 4, 5], [1, 2]), start=date(2018, 1, 1), end="")
 
 
 def test_euromil_play_append_ok(play):
     """ append ok """
     play.append(
-        Game([1, 2, 3, 4, 5], [1, 2]),
+        Grid([1, 2, 3, 4, 5], [1, 2]),
         start=date(2018, 1, 1),
         end=date(2018, 1, 1),
         friday=True,
     )
 
-    assert play.plays_list[0].game.stars == [1, 2]
+    assert play.plays_list[0].grid.stars == [1, 2]
     assert play.plays_list[0].start == date(2018, 1, 1)
     assert play.plays_list[0].end == date(2018, 1, 1)
     assert not play.plays_list[0].tuesday
