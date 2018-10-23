@@ -81,4 +81,4 @@ Authors
 .. |Last-Commit| image:: https://img.shields.io/github/last-commit/acpirience/pyeuromil.svg
    :target: https://github.com/acpirience/pyeuromil/commits/master
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/acpirience/pyeuromil.svg
-   :target: https://github.com/acpirience/pyeuromil/commits/master
+   :target: https://codecov.io/gh/acpirience/pyeuromil
