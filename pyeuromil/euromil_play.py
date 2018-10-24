@@ -18,6 +18,10 @@ class Plays:
     def __repr__(self):
         return f"{self.__class__.__name__}({len(self)} play(s): {self.plays_list})"
 
+    def __iter__(self):
+        for play in self.plays_list:
+            yield play
+
     def append(self, game, *, start=None, end=None, tuesday=False, friday=False):
         """ Add a new game + date of plays """
         if not isinstance(game, Grid):

@@ -1,6 +1,6 @@
 """ Unit tests for Euromil.py """
 from datetime import date
-from pyeuromil import Plays, Grid
+from pyeuromil import Plays, Grid, EuroPlay
 import pytest
 
 
@@ -35,6 +35,28 @@ def test_euromil_play_dunder(play):
 
     # bool
     assert play
+
+def test_euromil_play_iter(play):
+    play.append(
+        Grid([1, 2, 3, 4, 5], [1, 2]),
+        start=date(2018, 1, 1),
+        end=date(2018, 1, 1),
+        friday=True,
+    )
+    play.append(
+        Grid([11, 12, 13, 14, 15], [11, 12]),
+        start=date(2018, 1, 1),
+        end=date(2018, 1, 1),
+        friday=True,
+    )
+
+    nb = 0
+    for a_play in play:
+        assert isinstance(a_play, EuroPlay)
+        nb += 1
+
+    assert nb == 2
+
 
 
 def test_euromil_play_append_ko(play):
