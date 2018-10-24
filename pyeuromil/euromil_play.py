@@ -12,6 +12,9 @@ class Plays:
     def __len__(self):
         return len(self.plays_list)
 
+    def __bool__(self):
+        return bool(self.plays_list)
+
     def __repr__(self):
         return f"{self.__class__.__name__}({len(self)} play(s): {self.plays_list})"
 
