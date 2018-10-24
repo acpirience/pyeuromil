@@ -23,15 +23,15 @@ class Plays:
         for play in self.plays_list:
             yield play
 
-    def append(self, game, *, start=None, end=None, tuesday=False, friday=False):
-        """ Add a new game + date of plays """
-        if not isinstance(game, Grid):
+    def append(self, grid, *, start=None, end=None, tuesday=False, friday=False):
+        """ Add a new grid + date of plays """
+        if not isinstance(grid, Grid):
             raise ValueError("Expecting a type Grid")
 
         if not isinstance(start, date) or not isinstance(end, date):
             raise ValueError("Start and end date are mandatory and be of type date")
 
-        self.plays_list.append(EuroPlay(game, start, end, tuesday, friday))
+        self.plays_list.append(EuroPlay(grid, start, end, tuesday, friday))
 
     @staticmethod
     def ranking(numbers, stars):
