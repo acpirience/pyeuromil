@@ -1,5 +1,6 @@
 """ Stores plays and is used to validate if a game was a win or a loose """
 from datetime import date
+from .euromil import Euromil
 from .euromil_utils import EuroResult, EuroPlay, EURO_RANKS_NORMAL, EURO_RANKS_STAR_PLUS
 
 
@@ -45,6 +46,31 @@ class Plays:
         ranking_star_plus = EURO_RANKS_STAR_PLUS.get(f"{len(numbers)}-{len(stars)}", 0)
 
         return ranking_normal, ranking_star_plus
+
+    @staticmethod
+    def _game_summary(grid, result):
+        """ returns summary of numbers and win rankings for a game """
+        numbers_won, stars_won = grid.evaluate_grid(result)
+        ranking_normal, ranking_star_plus = Plays.ranking(numbers_won, stars_won)
+        return {
+            "date": result.date,
+            "numbers": numbers_won,
+            "stars": stars_won,
+            "ranking": ranking_normal,
+            "ranking_star_plus": ranking_star_plus,
+        }
+
+    @staticmethod
+    def play_summary(play):
+        """ returns summary of numbers and win rankings for a play (ensemble of games) """
+        summary = []
+        my_euromil = Euromil()
+        results = my_euromil.results(play.start, play.end)
+        for result in results:
+            result_day = result.date.weekday()
+            if result_day == 1 and play.tuesday or result_day == 4 and play.friday:
+                summary.append(Plays._game_summary(play.grid, result))
+        return summary
 
 
 class Grid:

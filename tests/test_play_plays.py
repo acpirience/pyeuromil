@@ -1,6 +1,6 @@
 """ Unit tests for Euromil.py """
 from datetime import date
-from pyeuromil import Plays, Grid, EuroPlay
+from pyeuromil import Euromil, Plays, Grid, EuroPlay
 import pytest
 
 
@@ -36,6 +36,7 @@ def test_euromil_play_dunder(play):
     # bool
     assert play
 
+
 def test_euromil_play_iter(play):
     play.append(
         Grid([1, 2, 3, 4, 5], [1, 2]),
@@ -56,7 +57,6 @@ def test_euromil_play_iter(play):
         nb += 1
 
     assert nb == 2
-
 
 
 def test_euromil_play_append_ko(play):
@@ -114,3 +114,65 @@ def test_euromil_play_ranking_ok():
     normal, stars_plus = Plays.ranking([1, 2, 3, 4, 5], [1, 2])
     assert normal == 1
     assert stars_plus == 1
+
+
+def test_euromil_game_summary():
+    """ game_summary tests """
+    my_euromil = Euromil()
+    summary = Plays._game_summary(
+        Grid([1, 2, 3, 4, 5], [1, 2]),
+        my_euromil.results(date(2018, 10, 23), date(2018, 10, 23))[0],
+    )
+
+    assert summary["date"] == date(2018, 10, 23)
+    assert summary["numbers"] == [1, 2, 5]
+    assert summary["stars"] == [2]
+    assert summary["ranking"] == 9
+    assert summary["ranking_star_plus"] == 6
+
+
+def test_euromil_play_summary_one_date():
+    """ play_summary tests only 1 date """
+    play = EuroPlay(
+        Grid([1, 2, 3, 4, 5], [1, 2]),
+        date(2018, 10, 23),
+        date(2018, 10, 23),
+        True,
+        True,
+    )
+
+    summary = Plays.play_summary(play)[0]
+
+    assert summary["date"] == date(2018, 10, 23)
+    assert summary["numbers"] == [1, 2, 5]
+    assert summary["stars"] == [2]
+    assert summary["ranking"] == 9
+    assert summary["ranking_star_plus"] == 6
+
+
+def test_euromil_play_summary_multiple_dates():
+    """ play_summary tests only 1 date """
+    play = EuroPlay(
+        Grid([1, 2, 3, 4, 5], [1, 2]),
+        date(2018, 10, 16),
+        date(2018, 10, 23),
+        True,
+        False,
+    )
+    summary = Plays.play_summary(play)
+
+    assert len(summary) == 2
+
+    summary0 = summary[0]
+    assert summary0["date"] == date(2018, 10, 23)
+    assert summary0["numbers"] == [1, 2, 5]
+    assert summary0["stars"] == [2]
+    assert summary0["ranking"] == 9
+    assert summary0["ranking_star_plus"] == 6
+
+    summary1 = summary[1]
+    assert summary1["date"] == date(2018, 10, 16)
+    assert summary1["numbers"] == []
+    assert summary1["stars"] == [1]
+    assert summary1["ranking"] == 0
+    assert summary1["ranking_star_plus"] == 10
