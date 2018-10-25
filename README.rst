@@ -46,6 +46,64 @@ Usage
     Result(date=datetime.date(2018, 10, 5), numbers=[8, 16, 24, 26, 35], stars=[3, 11])
     Result(date=datetime.date(2018, 10, 2), numbers=[7, 17, 29, 37, 45], stars=[3, 11])
 
+.. code-block:: python
+
+    from pyeuromil import Plays, Grid
+    from datetime import date
+    import pprint
+
+    pp = pprint.PrettyPrinter(indent=2)
+
+    plays = Plays()
+    game = Grid([15, 18, 32, 35, 40],[1, 7], star_plus=True)
+    plays.append(game, start=date(2018,9,28), end=date(2018,10,30), tuesday=True, friday=True)
+
+    for play in plays:
+        pp.pprint(Plays.play_summary(play))
+
+.. code-block:: text
+
+    [ { 'date': datetime.date(2018, 10, 23),
+        'numbers': [32],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []},
+      { 'date': datetime.date(2018, 10, 19),
+        'numbers': [],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []},
+      { 'date': datetime.date(2018, 10, 16),
+        'numbers': [15, 40],
+        'ranking': 12,
+        'ranking_star_plus': 9,
+        'stars': [1]},
+      { 'date': datetime.date(2018, 10, 12),
+        'numbers': [],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []},
+      { 'date': datetime.date(2018, 10, 9),
+        'numbers': [],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []},
+      { 'date': datetime.date(2018, 10, 5),
+        'numbers': [35],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []},
+      { 'date': datetime.date(2018, 10, 2),
+        'numbers': [],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []},
+      { 'date': datetime.date(2018, 9, 28),
+        'numbers': [],
+        'ranking': 0,
+        'ranking_star_plus': 0,
+        'stars': []}]
+
 Installation
 ------------
 Install and update using `pip`_:
