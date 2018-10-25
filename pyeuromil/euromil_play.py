@@ -1,6 +1,6 @@
 """ Stores plays and is used to validate if a game was a win or a loose """
 from datetime import date
-from .euromil import Euromil
+from .euromil import euro_results
 from .euromil_utils import EuroResult, EuroPlay, EURO_RANKS_NORMAL, EURO_RANKS_STAR_PLUS
 
 
@@ -64,8 +64,7 @@ class Plays:
     def play_summary(play):
         """ returns summary of numbers and win rankings for a play (ensemble of games) """
         summary = []
-        my_euromil = Euromil()
-        results = my_euromil.results(play.start, play.end)
+        results = euro_results(play.start, play.end)
         for result in results:
             result_day = result.date.weekday()
             if result_day == 1 and play.tuesday or result_day == 4 and play.friday:

@@ -1,6 +1,6 @@
 """ Unit tests for Euromil.py """
 from datetime import date
-from pyeuromil import Euromil, Plays, Grid, EuroPlay
+from pyeuromil import euro_results, Plays, Grid, EuroPlay
 import pytest
 
 
@@ -118,10 +118,9 @@ def test_euromil_play_ranking_ok():
 
 def test_euromil_game_summary():
     """ game_summary tests """
-    my_euromil = Euromil()
     summary = Plays._game_summary(
         Grid([1, 2, 3, 4, 5], [1, 2]),
-        my_euromil.results(date(2018, 10, 23), date(2018, 10, 23))[0],
+        euro_results(date(2018, 10, 23), date(2018, 10, 23))[0],
     )
 
     assert summary["date"] == date(2018, 10, 23)

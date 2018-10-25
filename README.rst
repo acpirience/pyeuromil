@@ -13,12 +13,11 @@ Usage
 -----
 .. code-block:: python
 
-    from pyeuromil import Euromil
+    import pyeuromil as em
     from datetime import date
 
-    my_euromil = Euromil()
-    # September draws
-    for result in my_euromil.draw_dates(date(2018, 9, 1), date(2018, 9, 30)):
+    # List of draw dates of September 2018
+    for result in em.euro_draw_dates(date(2018, 9, 1), date(2018, 9, 30)):
         print(result)
 
 .. code-block:: text
@@ -34,12 +33,11 @@ Usage
 
 .. code-block:: python
 
-    from pyeuromil import Euromil
+    import pyeuromil as em
     from datetime import date
 
-    my_euromil = Euromil()
-    # first week of october results
-    result_list = my_euromil.results(date(2018, 10, 1), date(2018, 10, 7))
+    # first week of october 2018 results
+    result_list = em.euro_results(date(2018, 10, 1), date(2018, 10, 7))
     for result in result_list:
         print(result)
 
