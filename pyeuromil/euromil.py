@@ -55,7 +55,7 @@ def euro_results(start_date=None, end_date=None):
 
 
 def euro_draw_dates(start_date=None, end_date=None):
-    """ list the draw for a given year / month """
+    """ list the draw for a interval """
     draws = []
     for result in euro_results(start_date, end_date):
         draws.append(result.date)
