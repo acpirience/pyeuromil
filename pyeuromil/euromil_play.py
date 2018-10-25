@@ -48,27 +48,31 @@ class Plays:
         return ranking_normal, ranking_star_plus
 
     @staticmethod
-    def _game_summary(grid, result):
+    def _game_summary(grid, result, only_wins=False):
         """ returns summary of numbers and win rankings for a game """
         numbers_won, stars_won = grid.evaluate_grid(result)
         ranking_normal, ranking_star_plus = Plays.ranking(numbers_won, stars_won)
-        return {
-            "date": result.date,
-            "numbers": numbers_won,
-            "stars": stars_won,
-            "ranking": ranking_normal,
-            "ranking_star_plus": ranking_star_plus,
-        }
+        if not only_wins or (ranking_normal + ranking_star_plus):
+            return {
+                "date": result.date,
+                "numbers": numbers_won,
+                "stars": stars_won,
+                "ranking": ranking_normal,
+                "ranking_star_plus": ranking_star_plus,
+            }
+        return None
 
     @staticmethod
-    def play_summary(play):
+    def play_summary(play, only_wins=False):
         """ returns summary of numbers and win rankings for a play (ensemble of games) """
         summary = []
         results = euro_results(play.start, play.end)
         for result in results:
             result_day = result.date.weekday()
             if result_day == 1 and play.tuesday or result_day == 4 and play.friday:
-                summary.append(Plays._game_summary(play.grid, result))
+                game_summary = Plays._game_summary(play.grid, result, only_wins)
+                if game_summary:
+                    summary.append(game_summary)
         return summary
 
 

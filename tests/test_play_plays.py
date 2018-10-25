@@ -150,9 +150,9 @@ def test_euromil_play_summary_one_date():
 
 
 def test_euromil_play_summary_multiple_dates():
-    """ play_summary tests only 1 date """
+    """ play_summary tests multiple date """
     play = EuroPlay(
-        Grid([1, 2, 3, 4, 5], [1, 2]),
+        Grid([1, 2, 3, 4, 5], [2, 12]),
         date(2018, 10, 16),
         date(2018, 10, 23),
         True,
@@ -165,13 +165,16 @@ def test_euromil_play_summary_multiple_dates():
     summary0 = summary[0]
     assert summary0["date"] == date(2018, 10, 23)
     assert summary0["numbers"] == [1, 2, 5]
-    assert summary0["stars"] == [2]
-    assert summary0["ranking"] == 9
-    assert summary0["ranking_star_plus"] == 6
+    assert summary0["stars"] == [2, 12]
+    assert summary0["ranking"] == 6
+    assert summary0["ranking_star_plus"] == 4
 
     summary1 = summary[1]
     assert summary1["date"] == date(2018, 10, 16)
     assert summary1["numbers"] == []
-    assert summary1["stars"] == [1]
+    assert summary1["stars"] == []
     assert summary1["ranking"] == 0
-    assert summary1["ranking_star_plus"] == 10
+    assert summary1["ranking_star_plus"] == 0
+
+    summary = Plays.play_summary(play, only_wins=True)
+    assert len(summary) == 1
