@@ -70,8 +70,8 @@ def test_euromil_results_both_dates_one_result():
     results = euro_results(date(2018, 10, 18), date(2018, 10, 20))
 
     assert len(results) == 1
-    assert results[0].n1 == 1
-    assert results[0].star1 == 3
+    assert results[0].numbers[0] == 1
+    assert results[0].stars[0] == 3
 
 
 def test_euromil_draw_dates():

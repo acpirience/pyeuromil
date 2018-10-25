@@ -22,8 +22,7 @@ def _load_data(year):
                     result[index] = int(value)
 
             result_date = datetime.strptime(result[0], "%d/%m/%Y").date()
-            result[0] = result_date
-            result_stored = EuroResult(*result)
+            result_stored = EuroResult(result_date, result[1:6], result[6:8])
             STORAGE[key][str(result_date)] = result_stored
 
 

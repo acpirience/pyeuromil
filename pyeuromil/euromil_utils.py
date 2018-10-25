@@ -3,9 +3,7 @@ from datetime import date
 from collections import namedtuple
 
 
-EuroResult = namedtuple(
-    "Result", ["date", "n1", "n2", "n3", "n4", "n5", "star1", "star2"]
-)
+EuroResult = namedtuple("Result", ["date", "numbers", "stars"])
 EuroPlay = namedtuple("Play", ["grid", "start", "end", "tuesday", "friday"])
 
 EURO_MIN_DATE = date(2011, 5, 10)

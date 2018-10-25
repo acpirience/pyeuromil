@@ -124,11 +124,11 @@ class Grid:
         stars_won = []
 
         for number in self.numbers:
-            if number in [result.n1, result.n2, result.n3, result.n4, result.n5]:
+            if number in result.numbers:
                 numbers_won.append(number)
 
         for number in self.stars:
-            if number in [result.star1, result.star2]:
+            if number in result.stars:
                 stars_won.append(number)
 
         return (numbers_won, stars_won)

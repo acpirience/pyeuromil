@@ -79,7 +79,7 @@ def test_euromil_grid_evaluate_grid_ko():
 
 def test_euromil_grid_evaluate_grid_ok_results():
     """ grid_evaluate ok with results"""
-    result = EuroResult(date(2018, 1, 1), 1, 2, 3, 4, 5, 1, 2)
+    result = EuroResult(date(2018, 1, 1), [1, 2, 3, 4, 5], [1, 2])
     test_grid = Grid(list(range(1, 6)), list(range(1, 3)), star_plus=True)
     test_numbers, test_stars = test_grid.evaluate_grid(result)
 
@@ -95,7 +95,7 @@ def test_euromil_grid_evaluate_grid_ok_results():
 
 def test_euromil_grid_evaluate_grid_ok_no_results():
     """ grid_evaluate ok without result"""
-    result = EuroResult(date(2018, 1, 1), 1, 2, 3, 4, 5, 1, 2)
+    result = EuroResult(date(2018, 1, 1), [1, 2, 3, 4, 5], [1, 2])
     test_grid = Grid(list(range(11, 16)), list(range(10, 13)), star_plus=False)
 
     test_numbers, test_stars = test_grid.evaluate_grid(result)
