@@ -1,11 +1,11 @@
-""" Stores plays and is used to validate if a game was a win or a loose """
+""" Euromy_play: Stores Euromillions plays and give summary of wins """
 from datetime import date
 from .euromil import euro_results
 from .euromil_utils import EuroResult, EuroPlay, EURO_RANKS_NORMAL, EURO_RANKS_STAR_PLUS
 
 
 class Plays:
-    """ Stores plays and is used to validate if a game was a win or a loose """
+    """ Stores plays and is used to validate if plays are wins or looses """
 
     def __init__(self):
         self.plays_list = []
@@ -24,7 +24,20 @@ class Plays:
             yield play
 
     def append(self, grid, *, start=None, end=None, tuesday=False, friday=False):
-        """ Add a new grid + date of plays """
+        """ Adds a new grid and dates of play to Plays
+
+        :param grid: The grid played
+        :type start_date: Grid
+        :param start_date: start date
+        :type start_date: date
+        :param end_date: end_date
+        :type end_date: date
+        :param tuesday: Indicates in the grid is played on tuedays
+        :type tuesday: date
+        :param friday: Indicates in the grid is played on fridays
+        :type friday: date
+        :raises: ValueError
+        """
         if not isinstance(grid, Grid):
             raise ValueError("Expecting a type Grid")
 
@@ -35,9 +48,16 @@ class Plays:
 
     @staticmethod
     def ranking(numbers, stars):
-        """
-            returns ranking for a normal game and ranking for a Star Plus game
-            Ranking is 0 if nothing was won
+        """ returns ranking for a normal game and ranking for a Star Plus game
+        Ranking is 0 if nothing was won
+
+        :param numbers: The list of numbers played
+        :type numbers: list of int
+        :param stars: The list of stars played
+        :type stars: list of int
+        :returns: normal ranking and Star Plus ranking
+        :rtype: int, int
+        :raises: ValueError
         """
         if not isinstance(numbers, list) or not isinstance(stars, list):
             raise ValueError("Expecting numbers and stars as type list")
@@ -64,7 +84,15 @@ class Plays:
 
     @staticmethod
     def play_summary(play, only_wins=False):
-        """ returns summary of numbers and win rankings for a play (ensemble of games) """
+        """ returns the summary of numbers and win rankings for a play (ensemble of games)
+
+        :param play: The play the summary will be based upon
+        :type play: play
+        :param only_wins: show only winning games in summary
+        :type only_wins: bool
+        :returns: dictionary with date, numbers, stars, ranking and ranking_star_plus keys
+        :rtype: dict
+        """
         summary = []
         results = euro_results(play.start, play.end)
         for result in results:
@@ -77,7 +105,7 @@ class Plays:
 
 
 class Grid:
-    """ Stores a unitary grid """
+    """ contains a grid played at an Euromillions game """
 
     def __init__(self, numbers, stars, star_plus=False):
         if not isinstance(numbers, list) or not isinstance(stars, list):
@@ -99,7 +127,15 @@ class Grid:
 
     @staticmethod
     def check_numbers(numbers, stars):
-        """ check if parameters for the game are corrects """
+        """ check if parameters for the grid are corrects
+
+            :param numbers: The list of numbers played
+            :type numbers: list of int
+            :param stars: The list of stars played
+            :type stars: list of int
+            :returns: check status and error message is status is ko
+            :rtype: bool, string
+            """
         if len(numbers) < 5 or len(numbers) > 10:
             return False, "Expecting 5 to 10 numbers"
 
@@ -120,7 +156,14 @@ class Grid:
         return True, ""
 
     def evaluate_grid(self, result):
-        """ returns the list of numbers and stars both in a Grid and a result """
+        """ returns the list of numbers and stars both in a Grid and a result
+
+            :param result: The result we want to check the grid against
+            :type result: EuroResult
+            :returns: the list of the numbers in the grid and the result and
+                the list of the stars in the grid and the result
+            :rtype: list of int, list of int
+            """
         if not isinstance(result, EuroResult):
             raise ValueError("Type EuroResult is expected")
 

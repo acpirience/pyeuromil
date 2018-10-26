@@ -4,7 +4,15 @@ from collections import namedtuple
 
 
 EuroResult = namedtuple("Result", ["date", "numbers", "stars"])
+""" A result of the Euromillions, contains numbers, starts
+and the date of the draw
+"""
+
+
 EuroPlay = namedtuple("Play", ["grid", "start", "end", "tuesday", "friday"])
+""" A play of the Euromillions, contains a grid, a start date,
+an end date and if the grid was played on tuesdays of fridays
+"""
 
 EURO_MIN_DATE = date(2011, 5, 10)
 EURO_MAX_DATE = date(2018, 10, 19)

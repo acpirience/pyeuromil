@@ -1,4 +1,4 @@
-""" A python library to check and analyse Euromillions results """
+""" Euromil: give the Euromillions results and historical draw dates   """
 from datetime import datetime, date
 import pkg_resources
 from .euromil_utils import EuroResult, EURO_MIN_DATE, EURO_MAX_DATE
@@ -27,7 +27,15 @@ def _load_data(year):
 
 
 def euro_results(start_date=None, end_date=None):
-    """ get a result list from an interval """
+    """ return the list of Euromillions result between a start_date and an end_date
+
+    :param start_date: start date
+    :type start_date: date
+    :param end_date: end_date
+    :type end_date: date
+    :returns:  list of EuroResult
+    :raises: ValueError
+    """
     results = []
 
     if start_date is None:
@@ -55,7 +63,15 @@ def euro_results(start_date=None, end_date=None):
 
 
 def euro_draw_dates(start_date=None, end_date=None):
-    """ list the draw for a interval """
+    """ return the list of Euromillions draws between a start_date and an end_date
+
+    :param start_date: start date
+    :type start_date: date
+    :param end_date: end_date
+    :type end_date: date
+    :returns:  list of date
+    :rtype: list of date
+    """
     draws = []
     for result in euro_results(start_date, end_date):
         draws.append(result.date)
