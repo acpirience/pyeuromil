@@ -5,7 +5,7 @@ pyeuromil
 
 |Travis-Status| |Last-Commit| |Codecov| |Black|
 
-A python library to check and analyse Euromillions results
+A Python library to check and analyse Euromillions results
 
 ------------------------------------------
 
@@ -114,7 +114,7 @@ Install and update using `pip`_:
 
 Compatibility
 -------------
-python > 3.6
+python >= 3.6
 
 Licence
 -------
