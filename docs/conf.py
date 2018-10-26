@@ -73,7 +73,7 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"
+html_theme = "sphinx_rtd_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -102,6 +102,19 @@ html_static_path = ["_static"]
 # Output file base name for HTML help builder.
 htmlhelp_basename = "Pyeuromildoc"
 
+html_theme_options = {
+    'canonical_url': 'https://pyeuromil.readthedocs.io/',
+    'logo_only': False,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': False,
+    # Toc options
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+    'navigation_depth': 4,
+    'includehidden': True,
+    'titles_only': False
+}
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -173,5 +186,4 @@ epub_exclude_files = ["search.html"]
 
 # -- Extension configuration -------------------------------------------------
 import sys, os
-
 sys.path.insert(0, os.path.abspath("../.."))
