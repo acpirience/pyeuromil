@@ -1,9 +1,9 @@
 pyeuromil
 =========
 
-|PyPI-Status| |Py-Versions| |Git-RepoSize|
+|PyPI-Status| |Py-Versions| |Git-RepoSize| |Black|
 
-|Travis-Status| |Last-Commit| |Codecov| |Black|
+|Travis-Status| |Last-Commit| |Codecov| |RTDimg|
 
 A Python library to check and analyse Euromillions results
 
@@ -112,13 +112,18 @@ Install and update using `pip`_:
 
     pip install pyeuromil
 
+Documentation
+-------------
+Documentation is available at ReadTheDocs_
+
+
 Compatibility
 -------------
 python >= 3.6
 
 Licence
 -------
-MIT License (see LICENSE file)
+MIT License
 
 Authors
 -------
@@ -126,6 +131,7 @@ Authors
 
 
 .. _pip: https://pip.pypa.io/en/stable/quickstart/
+.. _ReadTheDocs: https://pyeuromil.readthedocs.io
 .. |PyPI-Status| image:: https://img.shields.io/pypi/v/pyeuromil.svg
     :target: https://pypi.python.org/pypi/pyeuromil
 .. |Py-Versions| image:: https://img.shields.io/pypi/pyversions/pyeuromil.svg
@@ -140,3 +146,5 @@ Authors
    :target: https://codecov.io/gh/acpirience/pyeuromil
 .. |Black|  image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/ambv/black
+.. |RTDimg|  image:: https://readthedocs.org/projects/pyeuromil/badge/
+   :target: https://pyeuromil.readthedocs.io
