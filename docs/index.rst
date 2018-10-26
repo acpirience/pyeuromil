@@ -1,6 +1,8 @@
 Pyeuromil's documentation
 =========================
 
+:ref:`genindex` | :ref:`modindex`
+
 .. include:: ../README.rst
 
 
