@@ -15,7 +15,7 @@ an end date and if the grid was played on tuesdays of fridays
 """
 
 EURO_MIN_DATE = date(2011, 5, 10)
-EURO_MAX_DATE = date(2018, 10, 19)
+EURO_MAX_DATE = date(2018, 10, 26)
 
 EURO_RANKS_NORMAL = {
     "5-2": 1,
