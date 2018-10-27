@@ -77,3 +77,32 @@ def euro_draw_dates(start_date=None, end_date=None):
         draws.append(result.date)
 
     return draws
+
+
+def euro_stats(start_date=None, end_date=None):
+    """ return a count of numbers and stars between a start_date and an end_date
+
+    :param start_date: start date
+    :type start_date: date
+    :param end_date: end_date
+    :type end_date: date
+    :returns: a dictionary with the numbers of drows per numbers and stars
+    :rtype: dict
+    """
+    stats = {}
+
+    # init
+    for key in range(1, 51):
+        stats[str(key)] = 0
+
+    for key in range(1, 13):
+        stats[f"st{key}"] = 0
+
+    # populate stats
+    for result in euro_results(start_date, end_date):
+        for key in result.numbers:
+            stats[str(key)] += 1
+        for key in result.stars:
+            stats[f"st{key}"] += 1
+
+    return stats
