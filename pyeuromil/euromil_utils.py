@@ -1,6 +1,7 @@
 """ constants and definition used by the classes """
-from datetime import date
+from datetime import datetime, date
 from collections import namedtuple
+import pkg_resources
 
 
 EuroResult = namedtuple("Result", ["date", "numbers", "stars"])
@@ -14,8 +15,23 @@ EuroPlay = namedtuple("Play", ["grid", "start", "end", "tuesday", "friday"])
 an end date and if the grid was played on tuesdays of fridays
 """
 
+
+def _max_date_from_data():
+    """ A function that look for the latest draw in the data folder """
+    max_date = date(2018, 10, 26)
+    year = datetime.now().date().year
+    resource_package = __name__
+    resource_path = "/".join(("data", f"{year}.txt"))
+    with pkg_resources.resource_stream(resource_package, resource_path) as data:
+        data.readline()
+        line = data.readline().strip().decode("utf-8").split(" ")
+        max_date = datetime.strptime(line[0], "%d/%m/%Y").date()
+
+    return max_date
+
+
 EURO_MIN_DATE = date(2011, 5, 10)
-EURO_MAX_DATE = date(2018, 10, 26)
+EURO_MAX_DATE = _max_date_from_data()
 
 EURO_RANKS_NORMAL = {
     "5-2": 1,
