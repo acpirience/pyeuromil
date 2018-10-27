@@ -1,7 +1,7 @@
 """ Unit tests for euromil.py """
 from datetime import date
 import pytest
-from pyeuromil import euro_results, euro_draw_dates
+from pyeuromil import euro_results, euro_draw_dates, euro_stats
 
 
 # def test_euromil_load_data():
@@ -79,3 +79,10 @@ def test_euromil_draw_dates():
     assert date(2018, 10, 19) in euro_draw_dates()
     assert date(2011, 6, 3) in euro_draw_dates(date(2011, 1, 1), date(2011, 12, 31))
     assert date(2013, 11, 15) in euro_draw_dates(date(2013, 10, 30), date(2013, 11, 15))
+
+
+def test_euromil_stats():
+    """  test euro_stats method """
+    stats = euro_stats(date(2017, 10, 27), date(2018, 10, 27))
+    assert (stats["st4"]) == 25
+    assert (stats["15"]) == 17
