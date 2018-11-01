@@ -5,7 +5,8 @@ pyeuromil
 
 |Travis-Status| |Last-Commit| |Codecov| |RTDimg|
 
-A Python library to check and analyse Euromillions results
+| A Python library to check and analyse Euromillions results
+| *(Last result: 2018/10/30)*
 
 ------------------------------------------
 
