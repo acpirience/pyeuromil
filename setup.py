@@ -16,7 +16,7 @@ def read(filename):
 
 setup(
     name="pyeuromil",
-    version="0.1.201810",
+    version="0.1.20181106",
     url="https://github.com/acpirience/pyeuromil",
     project_urls=OrderedDict(
         (
