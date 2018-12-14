@@ -18,7 +18,7 @@ an end date and if the grid was played on tuesdays of fridays
 
 def _max_date_from_data():
     """ A function that look for the latest draw in the data folder """
-    max_date = date(2018, 12, 4)
+    max_date = date(2018, 12, 11)
     year = datetime.now().date().year
     resource_package = __name__
     resource_path = "/".join(("data", f"{year}.txt"))
@@ -32,6 +32,7 @@ def _max_date_from_data():
 
 EURO_MIN_DATE = date(2011, 5, 10)
 EURO_MAX_DATE = _max_date_from_data()
+EURO_YEAR_STORAGE = [str(x) for x in range(EURO_MIN_DATE.year, EURO_MAX_DATE.year + 1)]
 
 EURO_RANKS_NORMAL = {
     "5-2": 1,
