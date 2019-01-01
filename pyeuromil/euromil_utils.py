@@ -18,14 +18,15 @@ an end date and if the grid was played on tuesdays of fridays
 
 def _max_date_from_data():
     """ A function that look for the latest draw in the data folder """
-    max_date = date(2018, 12, 14)
+    max_date = date(2018, 12, 28)
     year = datetime.now().date().year
     resource_package = __name__
     resource_path = "/".join(("data", f"{year}.txt"))
     with pkg_resources.resource_stream(resource_package, resource_path) as data:
         data.readline()
         line = data.readline().strip().decode("utf-8").split(" ")
-        max_date = datetime.strptime(line[0], "%d/%m/%Y").date()
+        if line[0]:
+            max_date = datetime.strptime(line[0], "%d/%m/%Y").date()
 
     return max_date
 
