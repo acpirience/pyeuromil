@@ -1,7 +1,7 @@
 """ Euromil: give the Euromillions results and historical draw dates   """
 from datetime import datetime, date
 import pkg_resources
-from .euromil_utils import EuroResult, EURO_MIN_DATE, EURO_MAX_DATE, EURO_YEAR_STORAGE
+from .euromil_utils import EuroResult, EURO_MIN_DATE, EURO_MAX_DATE
 
 STORAGE = {}
 
@@ -10,9 +10,6 @@ def _load_data(year):
     """ Load data in storage per year """
     key = str(year)
     STORAGE[key] = {}
-
-    if key not in EURO_YEAR_STORAGE:
-        return
 
     resource_package = __name__
     resource_path = "/".join(("data", key + ".txt"))

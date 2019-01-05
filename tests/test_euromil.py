@@ -4,17 +4,6 @@ import pytest
 from pyeuromil import euro_results, euro_draw_dates, euro_stats
 
 
-# def test_euromil_load_data():
-#     """ data load test """
-#     euromil._load_data(2011)
-#     assert euromil._storage["2011"]
-#     assert euromil._storage["2011"]["2011-12-30"].n1 == 16
-#
-#     euromil._load_data(2012)
-#     assert euromil._storage["2012"]
-#     assert euromil._storage["2012"]["2012-01-03"].star2 == 10
-
-
 def test_euromil_results_year_not_exist():
     """ results of year test (year does not exists) """
     with pytest.raises(ValueError):
@@ -22,7 +11,8 @@ def test_euromil_results_year_not_exist():
         assert results is None
         results = euro_results(1920)
         assert results is None
-
+        results = euro_results(2999)
+        assert results is None
 
 def test_euromil_results_invalid_date():
     """ results method (invalid date) """
