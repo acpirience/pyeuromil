@@ -1,4 +1,4 @@
-""" Euromy_play: Stores Euromillions plays and give summary of wins """
+""" Euromy_play: stores Euromillions plays and give summary of wins """
 from datetime import date
 from .euromil import euro_results
 from .euromil_utils import EuroResult, EuroPlay, EURO_RANKS_NORMAL, EURO_RANKS_STAR_PLUS
