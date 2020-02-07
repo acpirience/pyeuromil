@@ -211,3 +211,6 @@ pip-selfcheck.json
 
 # testing
 test.py
+
+#vscode
+.vscode/settings.json
