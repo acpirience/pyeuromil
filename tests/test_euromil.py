@@ -30,7 +30,7 @@ def test_euromil_results_no_param():
     results = euro_results()
 
     assert results[0].date.year == 2011
-    assert results[-1].date.year == 2019
+    assert results[-1].date.year == 2020
 
 
 def test_euromil_results_start_date_only():
