@@ -24,7 +24,7 @@ copyright = "2018, Acpirience"
 author = "Acpirience"
 
 # The short X.Y version
-version = "0.2.20191231"
+version = "0.2.20201211"
 # The full version, including alpha/beta/rc tags
 release = "beta"
 

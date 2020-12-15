@@ -1,7 +1,7 @@
 """pyeuromil - A python library to check and analyse Euromillions results"""
 
 
-__version__ = "0.2.20191231"
+__version__ = "0.2.20201211"
 __author__ = "Acpirience <acpirience@gmail.com>"
 __all__ = []
 
