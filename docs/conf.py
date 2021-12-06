@@ -20,11 +20,11 @@
 # -- Project information -----------------------------------------------------
 
 project = "Pyeuromil"
-copyright = "2018, Acpirience"
+copyright = "2018-2021, Acpirience"
 author = "Acpirience"
 
 # The short X.Y version
-version = "0.2.20210420"
+version = "0.2.20211203"
 # The full version, including alpha/beta/rc tags
 release = "beta"
 
